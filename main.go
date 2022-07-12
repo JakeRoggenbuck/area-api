@@ -33,6 +33,20 @@ func main() {
 				"message": math.Pow(2 * math.Pi, i),
 			})
 		})
+
+		r.GET("/square/:w", func(c *gin.Context) {
+			w := c.Param("w")
+			i, err := strconv.ParseFloat(w, 32)
+			if err != nil {
+				c.JSON(http.StatusOK, gin.H{
+					"message": "Could not calculate.",
+				})
+			}
+			
+			c.JSON(http.StatusOK, gin.H{
+				"message": i * i,
+			})
+		})
 	}
 
 	port := ":8080"
