@@ -22,7 +22,7 @@ func main() {
 
 		r.GET("/circle/:r", func(c *gin.Context) {
 			r := c.Param("r")
-			i, err := strconv.ParseFloat(r, 32)
+			radius, err := strconv.ParseFloat(r, 32)
 			if err != nil {
 				c.JSON(http.StatusOK, gin.H{
 					"message": "Could not calculate.",
@@ -30,13 +30,13 @@ func main() {
 			}
 			
 			c.JSON(http.StatusOK, gin.H{
-				"message": math.Pow(2 * math.Pi, i),
+				"message": math.Pow(2 * math.Pi, radius),
 			})
 		})
 
 		r.GET("/square/:w", func(c *gin.Context) {
 			w := c.Param("w")
-			i, err := strconv.ParseFloat(w, 32)
+			width, err := strconv.ParseFloat(w, 32)
 			if err != nil {
 				c.JSON(http.StatusOK, gin.H{
 					"message": "Could not calculate.",
@@ -44,7 +44,28 @@ func main() {
 			}
 			
 			c.JSON(http.StatusOK, gin.H{
-				"message": i * i,
+				"message": width * width,
+			})
+		})
+
+		r.GET("/rectangle/:h/:w", func(c *gin.Context) {
+			h := c.Param("h")
+			w := c.Param("w")
+			width, err := strconv.ParseFloat(w, 32)
+			if err != nil {
+				c.JSON(http.StatusOK, gin.H{
+					"message": "Could not calculate.",
+				})
+			}
+			height, err := strconv.ParseFloat(h, 32)
+			if err != nil {
+				c.JSON(http.StatusOK, gin.H{
+					"message": "Could not calculate.",
+				})
+			}
+			
+			c.JSON(http.StatusOK, gin.H{
+				"message": height * width,
 			})
 		})
 	}
