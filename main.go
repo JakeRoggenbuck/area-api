@@ -1,11 +1,11 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
-	"net/http"
-	"math"
-	"strconv"
 	"fmt"
+	"github.com/gin-gonic/gin"
+	"math"
+	"net/http"
+	"strconv"
 )
 
 func main() {
@@ -28,9 +28,9 @@ func main() {
 					"message": "Could not calculate.",
 				})
 			}
-			
+
 			c.JSON(http.StatusOK, gin.H{
-				"message": math.Pow(2 * math.Pi, radius),
+				"message": math.Pow(radius, 2.0) * math.Pi,
 			})
 		})
 
@@ -42,7 +42,7 @@ func main() {
 					"message": "Could not calculate.",
 				})
 			}
-			
+
 			c.JSON(http.StatusOK, gin.H{
 				"message": width * width,
 			})
@@ -63,7 +63,7 @@ func main() {
 					"message": "Could not calculate.",
 				})
 			}
-			
+
 			c.JSON(http.StatusOK, gin.H{
 				"message": height * width,
 			})
